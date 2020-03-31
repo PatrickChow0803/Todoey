@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter/widgets/tasks_list.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
@@ -61,6 +62,9 @@ class TasksScreen extends StatelessWidget {
           // Instead of using a height field, can use an expanded widget to stretch the box.
           Expanded(
             child: Container(
+              // Used to have the tasks line up with the widgets on top
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: TasksList(),
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
