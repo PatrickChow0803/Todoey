@@ -23,6 +23,7 @@ class TasksList extends StatelessWidget {
 //              setState(() {
 //                widget.tasks[index].toggleDone();
 //              });
+                  taskData.updateTask(taskData.tasks[index]);
                 });
           },
           // Tells how many items I want to display
