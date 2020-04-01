@@ -9,6 +9,7 @@ class TasksScreen extends StatelessWidget {
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          // Creates the drag up sheet
           showModalBottomSheet(
               // The builder wants a widget and context, therefore supply these two things.
               context: context,
