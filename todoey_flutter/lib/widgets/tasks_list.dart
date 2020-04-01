@@ -13,18 +13,22 @@ class TasksList extends StatelessWidget {
         return ListView.builder(
           itemBuilder: (context, index) {
             return TaskTile(
-                // Use widget here to get a reference to the tasks.
-                // Gets the data from the provider from the file task_data.dart
-                taskTitle: taskData.tasks[index].name,
-                isChecked: taskData.tasks[index].isDone,
+              // Use widget here to get a reference to the tasks.
+              // Gets the data from the provider from the file task_data.dart
+              taskTitle: taskData.tasks[index].name,
+              isChecked: taskData.tasks[index].isDone,
 //                taskTitle: Provider.of<TaskData>(context).tasks[index].name,
 //                isChecked: Provider.of<TaskData>(context).tasks[index].isDone,
-                checkBoxCallBack: (checkBoxState) {
+              checkBoxCallBack: (checkBoxState) {
 //              setState(() {
 //                widget.tasks[index].toggleDone();
 //              });
-                  taskData.updateTask(taskData.tasks[index]);
-                });
+                taskData.updateTask(taskData.tasks[index]);
+              },
+              longPressCallBack: () {
+                taskData.deleteTask(taskData.tasks[index]);
+              },
+            );
           },
           // Tells how many items I want to display
           itemCount: Provider.of<TaskData>(context).tasks.length,
