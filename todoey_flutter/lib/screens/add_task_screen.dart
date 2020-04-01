@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey_flutter/models/task_data.dart';
+
+String newTaskTitle;
 
 class AddTaskScreen extends StatelessWidget {
-  final Function addTaskCallback;
-
-  AddTaskScreen(this.addTaskCallback);
-
   @override
   Widget build(BuildContext context) {
-    String newTaskTitle;
-
-    // Place a container within another container in order to get the shadow rounded effects on the top left/right
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -33,24 +31,26 @@ class AddTaskScreen extends StatelessWidget {
               ),
             ),
             TextField(
-              autocorrect: true,
+              autofocus: true,
               textAlign: TextAlign.center,
               onChanged: (newText) {
                 newTaskTitle = newText;
+                print(newTaskTitle);
               },
-            ),
-            SizedBox(
-              height: 10.0,
             ),
             FlatButton(
               child: Text(
                 'Add',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                  color: Colors.white,
+                ),
               ),
               color: Colors.lightBlueAccent,
               onPressed: () {
                 print(newTaskTitle);
-                addTaskCallback(newTaskTitle);
+                Provider.of<TaskData>(context, listen: false)
+                    .addTask(newTaskTitle);
+                Navigator.pop(context);
               },
             ),
           ],

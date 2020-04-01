@@ -13,15 +13,10 @@ class TasksScreen extends StatelessWidget {
         onPressed: () {
           // Creates the drag up sheet
           showModalBottomSheet(
-              // The builder wants a widget and context, therefore supply these two things.
-              context: context,
-              builder: (context) => AddTaskScreen((newTaskTitle) {
-//                    setState(() {
-//                      tasks.add(Task(name: newTaskTitle));
-//                    });
-                    // To pop off the modalBottomSheet when pressing add
-                    Navigator.pop(context);
-                  }));
+            // The builder wants a widget and context, therefore supply these two things.
+            context: context,
+            builder: (context) => AddTaskScreen(),
+          );
         },
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
