@@ -11,7 +11,7 @@ class TaskTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        'This is a task',
+        taskTitle,
         // if isChecked is true, add a lineThrough, else make the text decoration null.
         style: TextStyle(
             decoration: isChecked ? TextDecoration.lineThrough : null),

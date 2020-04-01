@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AddTaskScreen extends StatelessWidget {
+  final Function addTaskCallback;
+
+  AddTaskScreen(this.addTaskCallback);
+
   @override
   Widget build(BuildContext context) {
+    String newTaskTitle;
+
     // Place a container within another container in order to get the shadow rounded effects on the top left/right
     return Container(
       color: Color(0xff757575),
@@ -29,6 +35,9 @@ class AddTaskScreen extends StatelessWidget {
             TextField(
               autocorrect: true,
               textAlign: TextAlign.center,
+              onChanged: (newText) {
+                newTaskTitle = newText;
+              },
             ),
             SizedBox(
               height: 10.0,
@@ -39,7 +48,10 @@ class AddTaskScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               color: Colors.lightBlueAccent,
-              onPressed: () {},
+              onPressed: () {
+                print(newTaskTitle);
+                addTaskCallback(newTaskTitle);
+              },
             ),
           ],
         ),

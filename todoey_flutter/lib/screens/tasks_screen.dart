@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter/models/task.dart';
 import 'package:todoey_flutter/screens/add_task_screen.dart';
 import 'package:todoey_flutter/widgets/tasks_list.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: 'Buy milk'),
+    Task(name: 'Buy eggs'),
+    Task(name: 'Buy bread'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +25,13 @@ class TasksScreen extends StatelessWidget {
           showModalBottomSheet(
               // The builder wants a widget and context, therefore supply these two things.
               context: context,
-              builder: (context) => AddTaskScreen());
+              builder: (context) => AddTaskScreen((newTaskTitle) {
+                    setState(() {
+                      tasks.add(Task(name: newTaskTitle));
+                    });
+                    // To pop off the modalBottomSheet when pressing add
+                    Navigator.pop(context);
+                  }));
         },
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
@@ -55,7 +73,7 @@ class TasksScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 4),
                       child: Text(
-                        '12 Tasks',
+                        tasks.length.toString(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18.0,
@@ -72,7 +90,9 @@ class TasksScreen extends StatelessWidget {
             child: Container(
               // Used to have the tasks line up with the widgets on top
               padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: TasksList(),
+              child: TasksList(
+                tasks: tasks,
+              ),
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
